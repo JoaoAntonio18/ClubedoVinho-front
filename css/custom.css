@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    background-color: #EFEFEF;
 }
 
 body.login div {
@@ -17,3 +18,4 @@ body.login div {
 .btn-purple:hover {
     background-color: #5d00ba
 }
+
