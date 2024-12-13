@@ -7,3 +7,13 @@ body.login div {
     display: flex;
     align-items: center;
 }
+
+.btn-purple {
+    background-color: #7C00FB;
+    color: white;
+    border: 1px solid #7C00FB;
+}
+
+.btn-purple:hover {
+    background-color: #5d00ba
+}
