@@ -19,3 +19,34 @@ body.login div {
     background-color: #5d00ba
 }
 
+.libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .libre-baskerville-bold {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .libre-baskerville-regular-italic {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+
+h1{
+    font-family: "Libre Baskerville", serif;
+    margin-left: 80px;
+    margin-bottom: 30px;
+    font-weight: 200;
+}
+
+.Vinho{
+    font-family: "Libre Baskerville", serif;
+    font-style: normal;
+    color: #7C00FB;
+}
