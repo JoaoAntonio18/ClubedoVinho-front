@@ -33,16 +33,26 @@ for (let mes = 0; mes <= 11; mes++) {
 
 const SPAN_NUMERO = document.getElementById('resultado_numero');
 
+function removerUltimoDigito(numero){
+    return numero.substr(0, numero.length - 1);
+}
+
 function preencherNumero() {
-    if (INPUT_NUMERO === '4'){
-        document.getElementById('bandeira_visa').style.display = 'block';
+    let digitos = INPUT_NUMERO.value;
+    let ultimoDigito = digitos.substr(-1);
+
+    if (isNaN(ultimoDigito)) {
+        digitos = removerUltimoDigito(digitos);
     }
 
-    if (INPUT_NUMERO === '5'){
-        document.getElementById('bandeira_mastercard').style.display = 'block';
+    if (INPUT_NUMERO.value.length > 19){
+        return;
     }
 
-    SPAN_NUMERO.innerHTML = INPUT_NUMERO.value;
+    INPUT_NUMERO.value = digitos;
+    SPAN_NUMERO.innerHTML = digitos;
+
+    alterarBandeira();
 }
 
 const SPAN_NOME = document.getElementById('resultado_nome');
@@ -67,4 +77,40 @@ const SPAN_CVV= document.getElementById('resultado_cvv');
 
 function preencherCVV() {
     SPAN_CVV.innerHTML = INPUT_CVV.value;
+}
+
+function alterarBandeira() {
+    if (INPUT_NUMERO.value.length > 1) {
+        return;
+    }
+
+    document.getElementById('bandeira_visa').style.display = "none";
+    document.getElementById('bandeira_mastercard').style.display = "none";
+
+    if (INPUT_NUMERO.value === '4'){
+        document.getElementById('bandeira_visa').style.display = 'block';
+    }
+
+    if (INPUT_NUMERO.value === '5'){
+        document.getElementById('bandeira_mastercard').style.display = 'block';
+    }
+}
+
+function preencherCVV() {
+    SPAN_CVV.innerHTML = INPUT_CVV.value;
+}
+
+function mostrarFrente() {
+    document.getElementById('cartao_frente').classList.add('animate__slideInRight')
+
+    document.getElementById('cartao_frente').style.display = 'block';
+    document.getElementById('cartao_verso').style.display = 'none';
+}
+
+function mostrarVerso() {
+    document.getElementById('cartao_verso').classList.add('animate__animated')
+    document.getElementById('cartao_verso').classList.add('animate__slideInRight')
+
+    document.getElementById('cartao_frente').style.display = 'none';
+    document.getElementById('cartao_verso').style.display = 'block';
 }

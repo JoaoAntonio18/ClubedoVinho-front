@@ -9,18 +9,22 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="css/custom.css">   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-        <link rel="stylesheet" href="css/custom.css">
     </head>
     <body class="container pt-5">
         
         <div class="row">
             <div class="col-md-5 offset-md-1">
 
+                <h1 class="animate__animated animate__fadeInLeft">Pagamento</h1>
+
                 <div class="card card-body">
                     <form action="">
                         <label >Número</label>
-                        <input maxlength="16" onkeyup="preencherNumero()" id="card_numero" type="text" class="form-control form-control-lg" placeholder="0000 0000 0000 0000">
+                        <input  maxlength="16" onkeyup="preencherNumero()" id="card_numero" type="text" class="form-control form-control-lg" placeholder="0000 0000 0000 0000">
 
                         <label for="">Nome do Titular</label>
                         <input onkeyup="preencherNome()" id="card_titular" type="text" class="form-control form-control-lg" placeholder="Francisco A F Silva">
@@ -28,7 +32,7 @@
                         <div class="row">
                             <div class="col">
                                 <label>CVV</label>
-                                <input onkeyup="preencherCVV()" id="card_cvv" type="text" class="form-control form-control-lg mb-3 w-7 " placeholder="123">
+                                <input onblur="mostrarFrente()" onfocus="mostrarVerso()" onkeyup="preencherCVV()" maxlength="3" id="card_cvv" type="text" class="form-control form-control-lg mb-3 w-7 " placeholder="123">
                             </div>
                                 
                             <div class="col">
@@ -54,11 +58,11 @@
 
             <div class="col-md-5">
 
-                <div style="height: 250px;" class="card card-body bg-dark">
+                <div id="cartao_frente" style="height: 250px; margin-top: 79px;" class="card card-body bg-dark">
 
+                    <img id="bandeira_visa" style="display: none;" src="img/visa-17.png" width="70 px" >
+                    <img id="bandeira_mastercard" style="display: none;" src="img/png-clipart-mastercard-logo-credit-card-visa-brand-mastercard-text-label-thumbnail-removebg-preview.png" width="70 px">
                     <div class= "d-flex justify-content-between align-items-center">
-                        <img id="bandeira_visa" style="display: none;" src="img/visa-17.png" width="70 px" >
-                        <img id="bandeira_mastercard" style="display: none;" src="img/png-clipart-mastercard-logo-credit-card-visa-brand-mastercard-text-label-thumbnail.png" alt="">
                         <img src="img/chip.png" width="50 px">
                     </div>
 
@@ -70,10 +74,12 @@
                         <span id="resultado_mes">MM</span>
                         <span id="resultado_ano">YYYY</span>
                         <br>
-                        <span id="resultado_cvv">CVV</span>
                     </div>
-                    
-            </div>
+                </div>
+                
+                <div style="height: 250px; margin-top: 79px; display: none; color: white;" id="cartao_verso" class="card card-body bg-dark"  >
+                    <span id="resultado_cvv">CVV</span>
+                </div>
 
         <script src="js/pagamento.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
