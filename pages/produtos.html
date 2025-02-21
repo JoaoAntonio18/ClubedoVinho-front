@@ -1,152 +1,69 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ClubedoVinho</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<html lang="en">
 
-        <link rel="stylesheet" href="../css/custom.css">
-    </head>
-    <body class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos</title>
 
-        <hr>
-        <nav class="text-end">
-            <a href="dashboard.html" class="btn btn-outline-dark">Dashboard</a>
-            <a href="categorias.html" class="btn btn-outline-dark">Categorias</a>
-            <a href="clientes.html" class="btn btn-outline-dark">Clientes</a>
-            <a href="paises.html" class="btn btn-outline-dark">Países</a>
-            <a href="produtos.html" class="btn btn-dark">Produtos</a>
-            <a href="pedidos.html" class="btn btn-outline-dark">Pedidos</a>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/custom.css">
+</head>
 
-            <a href="../index.html" class="btn btn-outline-danger">Sair</a>
-        </nav>
-        <hr>
+<body class="container">
+    <hr>
+    <nav class="text-end py-2 px-3 ">
+        <a href="dashboard.html" class="btn btn-outline-dark">Dashboard</a>
+        <a href="categorias.html" class="btn btn-outline-dark">Categorias</a>
+        <a href="clientes.html" class="btn btn-outline-dark">Clientes</a>
+        <a href="paises.html" class="btn btn-outline-dark">Países</a>
+        <a href="produtos.html" class="btn btn-dark">Produtos</a>
+        <a href="pedidos.html" class="btn btn-outline-dark">Pedidos</a>
+        <a href="../index.html" class="btn btn-outline-danger">Sair</a>
+    </nav>
+    <hr>
 
-        <h2>Produtos</h2> 
+    <h2>Produtos</h2>
 
-        <section class="card card-body bg-white">
-            <table class="table">
-                <thead class="table-dark">
-                    <th>ID</th>
-                    <td>Produto</td>
-                   <td>Ações</td> 
-                </thead>
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Imagem do Produto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid rounded" alt="Imagem do Produto">
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <tbody>
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
 
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
+    <section class="card card-body mt-3">
+        <table class="table table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>#ID</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Imagem</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="table-products">
 
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
+            </tbody>
+        </table>
+    </section>
 
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="../js/produtos.js"></script>
+</body>
 
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>1234</td>
-                        <td>Vinho</td>
-
-                        <td>
-                            <a href="#" class="btn btn-outline-warning">Editar</a>
-                            <a href="#" class="btn btn-outline-danger">Excluir</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </body>
 </html>
