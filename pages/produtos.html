@@ -73,23 +73,29 @@
             </div>
             <div class="offcanvas-body">
               <form onsubmit="addProduct()">
-                <label for="ID">ID</label>
-                <input id="id" type="number" class="form-control mb-3">
-
+          
                 <label for="name">Nome</label>
-                <input type="text" class="form-control mb-3">
+                <input id="name" type="text" class="form-control mb-3">
+
+                <label for="category">Categoria</label>
+                <select id="category" class="form-select mb-3">
+                    <option selected>-- Selecione --</option>
+                    <option>Vinho Branco</option>
+                    <option>Vinho Tinto</option>
+                    <option>Espumante</option>
+                </select>
 
                 <label for="image">Imagem</label>
                 <input id="image" type="url" class="form-control mb-3">
 
                 <label for="quantity">Quantidade</label>
-                <input type="number" min="0" class="form-control mb-3">
+                <input id="quantity" type="number" min="0" class="form-control mb-3">
 
                 <label for="value">Valor</label>
-                <input id="value" type="number" class="form-control mb-3" step="0.01">
+                <input id="price" type="number" class="form-control mb-3" step="0.01">
 
-                <button type="button" class="btn btn-primary">Enviar</button>
-              </form>
+                <button class="btn btn-primary w-100">PRONTO</button>
+            </form>
             </div>
           </div>
 
