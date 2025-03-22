@@ -94,6 +94,8 @@ function addProduct(event) {
         body: JSON.stringify(dados)
     });
 
+    document.getElementById('form').reset();
+
     alert('Produto cadastrado com sucesso!');
     location.href = "";
 }
