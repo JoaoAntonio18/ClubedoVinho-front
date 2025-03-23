@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dinero.js": "^1.9.1",
     "json-server": "^1.0.0-beta.3"
   }
 }
