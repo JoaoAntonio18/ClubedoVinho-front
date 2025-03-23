@@ -1,5 +1,7 @@
-if (localStorage.getItem('darkmode') === 'sim') {
-    document.getElementsByTagName("head")[0].innerHTML += `
-        <link rel="stylesheet" href="../css/darkmode.css">
-    `;
-}
+let trilho = document.getElementById('trilho');
+let body = document.querySelector('body');
+
+trilho.addEventListener('click', ()=>{
+    trilho.classList.toggle('dark')
+    body.classList.toggle('dark')
+})
