@@ -1,3 +1,22 @@
+const Dinero = require('dinero.js');
+
+document.getElementById('price').addEventListener('input', function(event) {
+    let value = event.target.value;
+    
+    // Remove caracteres não numéricos
+    value = value.replace(/\D/g, '');
+
+    // Converte o valor para centavos
+    let amount = parseInt(value || '0', 10);
+
+    // Criar um objeto Dinero.js com o valor em centavos
+    let dinero = Dinero({ amount: amount, currency: 'BRL' });
+
+    // Formatar o valor para real (R$)
+    event.target.value = dinero.toFormat('$0,0.00');
+});
+
+
 const TABLE = document.getElementById('table-products');
 
 listar();
