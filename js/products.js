@@ -1,90 +1,85 @@
-const Dinero = require('dinero.js');
+document.addEventListener("DOMContentLoaded", function () {
+    const tabelaProdutos = document.getElementById("tabela-produtos");
 
-document.getElementById('price').addEventListener('input', function(event) {
-    let value = event.target.value;
-    value = value.replace(/\D/g, '');
-    let amount = parseInt(value || '0', 10);
-    let dinero = Dinero({ amount: amount, currency: 'BRL' });
-    event.target.value = dinero.toFormat('$0,0.0')
-});
-
-
-const TABLE = document.getElementById('table-products');
-
-listar();
-
-function listar() {
-    fetch('http://localhost:3000/products')
-        .then(res => res.json())
-        .then(dados => {
-            TABLE.innerHTML = '';
-
-            dados.forEach((product) => {
-                TABLE.innerHTML += `
-                    <tr>
-                        <td>${product.id}</td>
-                        <td>${product.name}</td>
-                        <td>${product.category}</td>
-                        <td> <img onclick="abrirModal('${product.name}', '${product.image}')" data-bs-toggle="modal" data-bs-target="#exampleModal" src="${product.image}" width="100px"> </td>
-                        <td>${product.quantity}</td>
-                        <td>${product.price}</td>
-                        <td>
-                            <a href="#" class="btn btn-outline-warning btn-sm">
-                                Editar
-                            </a>
-                            <a href="#" onclick="excluir('${product.id}')" class="btn btn-outline-danger btn-sm">
-                                Excluir
-                            </a>
-                        </td>
-                    </tr>
-                `;
-            });
-        });
-}
-
-
-function excluir(id) {
-    if (false === confirm('Confirma ou sem firma?')) {
-        return;
+    async function buscarProdutos() {
+        try {
+            const resposta = await fetch("http://localhost:3000/products");
+            const produtos = await resposta.json();
+            console.log("Produtos recebidos:", produtos);
+            listarProdutos(produtos);
+        } catch (erro) {
+            console.error("Erro ao buscar produtos:", erro);
+        }
     }
 
-    fetch(`http://localhost:3000/products/${id}`, {
-        method: 'DELETE'
-    });
-
-    alert('Excluido com sucesso');
-    listar();
-}
-
-
-function abrirModal(nome, imagem) {
-    document.getElementById('modal_produto_nome').innerHTML = nome;
-    document.getElementById('modal_produto_body').innerHTML = `
-        <img src="${imagem}" width="100%">
-    `;
-}
-
-function addProduct() {
-    event.preventDefault();
-
-    let dados = {
-        name: document.getElementById('name').value,
-        price: document.getElementById('price').value,
-        category: document.getElementById('category').value,
-        quantity: document.getElementById('quantity').value,
-        image: document.getElementById('image').value,
-    };
-
-    fetch('http://localhost:3000/products', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dados)
-    });
-
-    document.getElementById('form').reset();    
+    function formatarPreco(valor) {
+        let numero = parseFloat(valor);
     
-    alert('Pronto, cadastrado com sucesso');
-    listar();
-}
+        if (isNaN(numero)) {
+            return 'R$ 0,00';
+        }
+    
+        const preco = Dinero({ amount: Math.round(numero * 100), currency: 'BRL' });
+        return preco.toFormat('$0,0.00').replace('$', 'R$ ');
+    }
+    
+
+    function listarProdutos(produtos) {
+        tabelaProdutos.innerHTML = ""; // Limpa a tabela antes de listar os produtos
+        produtos.forEach(produto => {
+            const linha = document.createElement("tr");
+
+            linha.innerHTML = `
+                <td><img src="${produto.image}" alt="${produto.title}" width="50"/></td>
+                <td>${produto.title}</td>
+                <td>${produto.category}</td>
+                <td>${formatarPreco(produto.price)}</td>
+            `;
+
+            tabelaProdutos.appendChild(linha);
+        });
+    }
+
+    async function addProduct(event) {
+        event.preventDefault(); // Previne o envio do formulário padrão
+
+        const nome = document.getElementById("name").value;
+        const categoria = document.getElementById("category").value;
+        const quantidade = document.getElementById("quantity").value;
+        const imagem = document.getElementById("image").value;
+        const preco = document.getElementById("price").value;
+
+        const novoProduto = {
+            title: nome,
+            category: categoria,
+            quantity: quantidade,
+            image: imagem,
+            price: preco
+        };
+
+        try {
+            const resposta = await fetch("http://localhost:3000/products", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(novoProduto)
+            });
+
+            if (resposta.ok) {
+                const produto = await resposta.json();
+                console.log("Produto adicionado:", produto);
+                buscarProdutos(); // Recarrega a lista de produtos
+            } else {
+                console.error("Erro ao adicionar produto:", resposta.statusText);
+            }
+        } catch (erro) {
+            console.error("Erro de rede:", erro);
+        }
+    }
+
+    // Vincula a função addProduct ao formulário
+    document.getElementById("form").addEventListener("submit", addProduct);
+
+    buscarProdutos();
+});
